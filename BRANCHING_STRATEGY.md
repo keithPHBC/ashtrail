@@ -46,22 +46,30 @@ phase/tech-design
 
 2. **Do work:** Make commits on the feature branch. Commit messages should be concise and describe the "why."
 
-3. **Finish work:** Squash merge the feature branch into `main`
+3. **Push and open a PR:** Push the branch to origin and create a pull request.
    ```
-   git checkout main
-   git merge --squash feature/player-movement
-   git commit -m "Feature: player movement"
+   git push -u origin feature/player-movement
+   gh pr create --title "Feature: player movement" --body "..."
    ```
 
-4. **Clean up:** Delete the feature branch
+4. **Review and merge:** Review the PR, then squash merge via GitHub (use the "Squash and merge" button or CLI).
    ```
+   gh pr merge --squash
+   ```
+
+5. **Clean up:** Pull main and delete the feature branch locally and remotely.
+   ```
+   git checkout main
+   git pull origin main
    git branch -d feature/player-movement
+   git push origin --delete feature/player-movement
    ```
 
 ## Rules
 
 1. One branch per logical unit of work (roughly maps to one epic or work item).
 2. Keep branches short-lived — merge frequently rather than letting branches diverge.
-3. If `main` has moved ahead, rebase or merge `main` into your branch before merging back.
-4. Commit early, commit often on feature branches. Squash when merging to `main` to keep history clean.
-5. Tag releases or milestones on `main` (e.g., `v0.1-poc`).
+3. If `main` has moved ahead, rebase or merge `main` into your branch before opening the PR.
+4. Commit early, commit often on feature branches. Squash when merging to `main` via PR to keep history clean.
+5. All merges to `main` go through a pull request — no direct local merges.
+6. Tag releases or milestones on `main` (e.g., `v0.1-poc`).
