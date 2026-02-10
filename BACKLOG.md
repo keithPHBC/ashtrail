@@ -6,37 +6,37 @@
 
 **Goal:** Get a runnable Godot project with the correct structure and settings.
 **Phase:** 4
-**Status:** Not Started
+**Status:** Done
 
 #### SETUP-1: Initialize Godot project with correct settings
 
 **Type:** Chore
-**Status:** To Do
+**Status:** Done
 **Priority:** Must Have
 
 **Description:**
 Create the Godot project file and configure display settings for pixel art on Steam Deck. Set up the directory structure defined in TECH_DESIGN.md.
 
 **Acceptance Criteria:**
-- [ ] `project.godot` exists with viewport 640x400, stretch mode `canvas_items`, nearest-neighbor filtering
-- [ ] Directory structure matches TECH_DESIGN.md (`scenes/`, `scripts/`, etc.)
-- [ ] `.gitignore` configured for Godot 4
-- [ ] Project opens and runs in Godot (blank window at correct resolution)
+- [x] `project.godot` exists with viewport 640x400, stretch mode `canvas_items`, nearest-neighbor filtering
+- [x] Directory structure matches TECH_DESIGN.md (`scenes/`, `scripts/`, etc.)
+- [x] `.gitignore` configured for Godot 4
+- [x] Project opens and runs in Godot (blank window at correct resolution)
 
 #### SETUP-2: Configure input mappings
 
 **Type:** Chore
-**Status:** To Do
+**Status:** Done
 **Priority:** Must Have
 
 **Description:**
 Define input actions in the Godot project for movement, jump, attack, and restart. Map both gamepad and keyboard inputs per TECH_DESIGN.md.
 
 **Acceptance Criteria:**
-- [ ] `move_left`, `move_right`, `jump`, `attack`, `restart` actions defined in project input map
-- [ ] Gamepad bindings: left stick/d-pad, A (south), X (west), Start
-- [ ] Keyboard bindings: A/D or arrows, Space, J, R
-- [ ] Input actions are testable (print to console on press)
+- [x] `move_left`, `move_right`, `jump`, `attack`, `restart` actions defined in project input map
+- [x] Gamepad bindings: left stick/d-pad, A (south), X (west), Start
+- [x] Keyboard bindings: A/D or arrows, Space, J, R
+- [ ] Input actions are testable (print to console on press) — deferred to PLAYER-1
 
 ---
 
