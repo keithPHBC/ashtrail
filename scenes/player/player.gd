@@ -6,6 +6,7 @@ var stats: Resource
 const GRAVITY: float = 1200.0
 const ACCELERATION: float = 0.2
 const FRICTION: float = 0.15
+const JUMP_CUT_MULTIPLIER: float = 0.4
 
 func _ready() -> void:
 	# Create default stats (will be injectable later via .tres)
@@ -30,9 +31,11 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = lerp(velocity.x, 0.0, FRICTION)
 
-	# Jump
+	# Jump (variable height: release early for short hop)
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = -stats.jump_force
+	if Input.is_action_just_released("jump") and velocity.y < 0.0:
+		velocity.y *= JUMP_CUT_MULTIPLIER
 
 	# Flip sprite to face movement direction
 	if input_dir != 0.0:
