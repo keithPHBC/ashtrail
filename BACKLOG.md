@@ -144,23 +144,23 @@ Enemies have HP (via Stats resource) and take damage from the player's attack. T
 
 **Goal:** A hand-crafted level with platforms, enemies, and a win zone.
 **Phase:** 4
-**Status:** Not Started
+**Status:** In Progress
 
 #### LEVEL-1: Build test level with TileMap
 
 **Type:** Feature
-**Status:** To Do
+**Status:** Done
 **Priority:** Must Have
 
 **Description:**
 Create a short test level using TileMapLayer. Include a floor, some platforms at different heights, and walls. All tiles are simple colored rectangles. Level should be wide enough to require scrolling.
 
 **Acceptance Criteria:**
-- [ ] TileMapLayer with a basic tileset (single colored square tile with collision)
-- [ ] Level has: ground floor, 3-5 platforms at varying heights, walls at boundaries
-- [ ] Level is wider than the viewport (requires camera scrolling)
-- [ ] Player can navigate the full level using run and jump
-- [ ] Camera follows the player smoothly
+- [x] TileMapLayer with a basic tileset (single colored square tile with collision)
+- [x] Level has: ground floor, 3-5 platforms at varying heights, walls at boundaries
+- [x] Level is wider than the viewport (requires camera scrolling)
+- [x] Player can navigate the full level using run and jump
+- [x] Camera follows the player smoothly
 
 #### LEVEL-2: Place enemies and win zone
 

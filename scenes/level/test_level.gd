@@ -1,29 +1,75 @@
 extends Node2D
 
-# Builds a simple test level using StaticBody2D platforms.
-# This avoids TileMap complexity for initial movement testing.
-# Will be replaced with proper TileMap in LEVEL-1.
+const TILE_SIZE := 16
+
+# Level layout: # = solid, . = empty
+# Viewport is 40x25 tiles (640x400), this map is ~100 tiles wide for scrolling
+const LEVEL_MAP := [
+	"####################################################################################################",
+	"#..................................................................................................#",
+	"#..................................................................................................#",
+	"#..................................................................................................#",
+	"#..................................................................................................#",
+	"#..................................................................................................#",
+	"#..................................................................................................#",
+	"#..................................................................................................#",
+	"#..................................................................................................#",
+	"#..............####...........................................................######...............#",
+	"#..................................................................................................#",
+	"#..................................................................................................#",
+	"#.........####..........####..............########.............................####................#",
+	"#..................................................................................................#",
+	"#..................................................................................................#",
+	"#...####..............####..............####..........####.............####........................#",
+	"#..................................................................................................#",
+	"#..................................................................................................#",
+	"#..................................####..........####..........####..........####..................#",
+	"#..................................................................................................#",
+	"#..................................................................................................#",
+	"#..................................................................................................#",
+	"#..................................................................................................#",
+	"####################################################################################################",
+	"####################################################################################################",
+]
+
+var tilemap_layer: TileMapLayer
 
 func _ready() -> void:
-	_create_platform(Vector2(320, 360), Vector2(800, 20), Color(0.4, 0.4, 0.5))  # Floor
-	_create_platform(Vector2(150, 280), Vector2(120, 16), Color(0.5, 0.4, 0.4))  # Left platform
-	_create_platform(Vector2(400, 240), Vector2(150, 16), Color(0.5, 0.4, 0.4))  # Middle platform
-	_create_platform(Vector2(580, 180), Vector2(120, 16), Color(0.5, 0.4, 0.4))  # Right platform
+	_build_tilemap()
 
-func _create_platform(pos: Vector2, size: Vector2, color: Color) -> void:
-	var body := StaticBody2D.new()
-	body.position = pos
+func _build_tilemap() -> void:
+	tilemap_layer = TileMapLayer.new()
 
-	var col := CollisionShape2D.new()
-	var shape := RectangleShape2D.new()
-	shape.size = size
-	col.shape = shape
-	body.add_child(col)
+	var tileset := TileSet.new()
+	tileset.tile_size = Vector2i(TILE_SIZE, TILE_SIZE)
 
-	var sprite := Sprite2D.new()
-	var img := Image.create(int(size.x), int(size.y), false, Image.FORMAT_RGBA8)
-	img.fill(color)
-	sprite.texture = ImageTexture.create_from_image(img)
-	body.add_child(sprite)
+	# Create a TileSetAtlasSource with a single-pixel image we'll color
+	var source := TileSetAtlasSource.new()
+	var img := Image.create(TILE_SIZE, TILE_SIZE, false, Image.FORMAT_RGBA8)
+	img.fill(Color(0.35, 0.35, 0.45))
+	source.texture = ImageTexture.create_from_image(img)
+	source.texture_region_size = Vector2i(TILE_SIZE, TILE_SIZE)
+	source.create_tile(Vector2i(0, 0))
 
-	add_child(body)
+	var source_id := tileset.add_source(source)
+
+	# Add physics layer to tileset so tiles have collision
+	tileset.add_physics_layer()
+	# Create collision polygon for the tile (coordinates are relative to tile center)
+	var half := TILE_SIZE / 2.0
+	var polygon := PackedVector2Array([
+		Vector2(-half, -half), Vector2(half, -half),
+		Vector2(half, half), Vector2(-half, half)
+	])
+	source.get_tile_data(Vector2i(0, 0), 0).add_collision_polygon(0)
+	source.get_tile_data(Vector2i(0, 0), 0).set_collision_polygon_points(0, 0, polygon)
+
+	tilemap_layer.tile_set = tileset
+	add_child(tilemap_layer)
+
+	# Place tiles from the map
+	for y in range(LEVEL_MAP.size()):
+		var row: String = LEVEL_MAP[y]
+		for x in range(row.length()):
+			if row[x] == "#":
+				tilemap_layer.set_cell(Vector2i(x, y), source_id, Vector2i(0, 0))
