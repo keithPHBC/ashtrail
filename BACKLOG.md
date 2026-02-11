@@ -44,24 +44,27 @@ Define input actions in the Godot project for movement, jump, attack, and restar
 
 **Goal:** A controllable character with stat-driven movement and attack.
 **Phase:** 4
-**Status:** Not Started
+**Status:** In Progress
 
 #### PLAYER-1: Basic player movement (run + jump)
 
 **Type:** Feature
-**Status:** To Do
+**Status:** Done
 **Priority:** Must Have
 
 **Description:**
 Create the player scene with CharacterBody2D. Implement horizontal movement and jumping with gravity. Movement speed and jump force should read from the Stats resource so they can be tuned.
 
 **Acceptance Criteria:**
-- [ ] Player scene: CharacterBody2D with Sprite2D (colored rectangle) and CollisionShape2D
-- [ ] Player moves left/right with acceleration and deceleration (not instant)
-- [ ] Player jumps when on floor; cannot jump mid-air
-- [ ] Gravity pulls player down when airborne
-- [ ] Speed and jump force are driven by Stats resource values
-- [ ] Changing stat values produces visibly different movement behavior
+- [x] Player scene: CharacterBody2D with Sprite2D (colored rectangle) and CollisionShape2D
+- [x] Player moves left/right with acceleration and deceleration (not instant)
+- [x] Player jumps when on floor; cannot jump mid-air
+- [x] Gravity pulls player down when airborne
+- [x] Speed and jump force are driven by Stats resource values
+- [ ] Changing stat values produces visibly different movement behavior — deferred to SPIKE-1
+
+**Notes:**
+Variable jump height added during playtest feedback — releasing jump early cuts velocity to 40% for short hops.
 
 #### PLAYER-2: Player melee attack
 
