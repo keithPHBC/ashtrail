@@ -143,12 +143,24 @@ Each work item lives under an epic and follows this template:
 2. **Scope is sacred.** If it's not on the PoC feature list, it doesn't go in.
 3. **Playtest early.** The core mechanic prototype (Phase 4) is the most important checkpoint. If it's not fun with rectangles, polish won't save it.
 4. **Kill bad ideas fast.** It's fine to go back to Phase 2 and pick a different concept if the prototype doesn't work.
-5. **Track decisions.** When we make a choice, we write it down with the reasoning.
+5. **Track decisions.** When a decision is made (in conversation, PR review, or playtesting), record it in the decision log of the relevant document before the PR is opened. Concept/scope decisions go in `CONCEPT.md`, technical decisions in `TECH_DESIGN.md`, process decisions in `GAME_DEV_PROCESS.md`.
 6. **Work from the backlog.** In Phases 4–5, all work is tracked as work items. No untracked work.
+7. **Log every playtest.** After each playtest, record observations and actions in `PLAYTEST_LOG.md` before opening the PR. Link to work items and commits.
+8. **Update current status.** Update the Current Status section in this doc when completing a work item or transitioning between phases.
+9. **One work item per PR.** Keep work items small and self-contained enough that each one is independently testable and mergeable.
 
 ---
 
 ## Current Status
 
-**Phase:** 1 — Brainstorm & Discovery
-**Status:** Not started
+**Phase:** 4 — Core Mechanic Prototype
+**Status:** In progress — PLAYER-1 and LEVEL-1 complete, PLAYER-2 next
+
+### Phase History
+
+| Phase | Status | Date |
+|-------|--------|------|
+| 1 — Brainstorm & Discovery | Done | 2026-02-10 |
+| 2 — Concept Selection & Definition | Done | 2026-02-10 |
+| 3 — Technical Design & Work Planning | Done | 2026-02-10 |
+| 4 — Core Mechanic Prototype | In Progress | 2026-02-10 |
