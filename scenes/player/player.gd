@@ -16,6 +16,7 @@ var _attack_cooldown_timer: float = 0.0
 
 @onready var attack_area: Area2D = $AttackArea
 @onready var attack_shape: CollisionShape2D = $AttackArea/AttackShape
+@onready var attack_sprite: Sprite2D = $AttackArea/AttackSprite
 
 func _ready() -> void:
 	stats = StatsClass.new()
@@ -26,6 +27,12 @@ func _ready() -> void:
 	img.fill(Color(0.2, 0.8, 0.3))
 	var tex := ImageTexture.create_from_image(img)
 	$Sprite2D.texture = tex
+
+	# Placeholder attack visual: red rectangle (hidden by default)
+	var atk_img := Image.create(28, 24, false, Image.FORMAT_RGBA8)
+	atk_img.fill(Color(0.9, 0.2, 0.2, 0.7))
+	attack_sprite.texture = ImageTexture.create_from_image(atk_img)
+	attack_sprite.visible = false
 
 func _physics_process(delta: float) -> void:
 	# Gravity
@@ -65,11 +72,12 @@ func _physics_process(delta: float) -> void:
 func _start_attack() -> void:
 	_attack_timer = ATTACK_DURATION
 	attack_shape.disabled = false
-	# Deal damage to any enemies already overlapping
+	attack_sprite.visible = true
 	_hit_enemies()
 
 func _end_attack() -> void:
 	attack_shape.disabled = true
+	attack_sprite.visible = false
 	_attack_cooldown_timer = ATTACK_COOLDOWN
 
 func _hit_enemies() -> void:

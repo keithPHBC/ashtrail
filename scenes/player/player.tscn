@@ -23,3 +23,5 @@ monitorable = false
 [node name="AttackShape" type="CollisionShape2D" parent="AttackArea"]
 shape = SubResource("RectangleShape2D_atk")
 disabled = true
+
+[node name="AttackSprite" type="Sprite2D" parent="AttackArea"]
