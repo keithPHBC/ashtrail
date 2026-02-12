@@ -7,9 +7,17 @@ const GRAVITY: float = 1200.0
 const ACCELERATION: float = 0.2
 const FRICTION: float = 0.15
 const JUMP_CUT_MULTIPLIER: float = 0.4
+const ATTACK_DURATION: float = 0.2
+const ATTACK_COOLDOWN: float = 0.35
+
+var _facing_right: bool = true
+var _attack_timer: float = 0.0
+var _attack_cooldown_timer: float = 0.0
+
+@onready var attack_area: Area2D = $AttackArea
+@onready var attack_shape: CollisionShape2D = $AttackArea/AttackShape
 
 func _ready() -> void:
-	# Create default stats (will be injectable later via .tres)
 	stats = StatsClass.new()
 	stats.reset()
 
@@ -37,8 +45,34 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_released("jump") and velocity.y < 0.0:
 		velocity.y *= JUMP_CUT_MULTIPLIER
 
-	# Flip sprite to face movement direction
+	# Facing direction
 	if input_dir != 0.0:
-		$Sprite2D.flip_h = input_dir < 0.0
+		_facing_right = input_dir > 0.0
+		$Sprite2D.flip_h = not _facing_right
+		attack_area.position.x = 26.0 if _facing_right else -26.0
+
+	# Attack
+	_attack_cooldown_timer = maxf(0.0, _attack_cooldown_timer - delta)
+	if _attack_timer > 0.0:
+		_attack_timer -= delta
+		if _attack_timer <= 0.0:
+			_end_attack()
+	if Input.is_action_just_pressed("attack") and _attack_cooldown_timer <= 0.0 and _attack_timer <= 0.0:
+		_start_attack()
 
 	move_and_slide()
+
+func _start_attack() -> void:
+	_attack_timer = ATTACK_DURATION
+	attack_shape.disabled = false
+	# Deal damage to any enemies already overlapping
+	_hit_enemies()
+
+func _end_attack() -> void:
+	attack_shape.disabled = true
+	_attack_cooldown_timer = ATTACK_COOLDOWN
+
+func _hit_enemies() -> void:
+	for body in attack_area.get_overlapping_bodies():
+		if body.has_method("take_damage"):
+			body.take_damage(stats.attack_damage)
