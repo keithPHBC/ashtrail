@@ -179,3 +179,6 @@ Platformers rely on tight, tuned controls. Dynamically scaling speed and jump vi
 | Stats as Resource | Composable across player/enemies, editable in inspector, signal-driven for UI updates. |
 | 640x400 viewport at 2x | Pixel art friendly, fills Steam Deck 1280x800 exactly. |
 | Camera on Player | Simplest approach for a single-screen/scrolling level. |
+| preload() over class_name | class_name registry requires editor indexing; preload works reliably from CLI-created projects. |
+| Programmatic TileMapLayer | Level built from text map in code — avoids hand-writing binary tile data in .tscn files, keeps layout readable and editable. |
+| Variable jump height | Playtest feedback: fixed jump height felt binary. Cut upward velocity on early release (0.4 multiplier) for short hops. |
