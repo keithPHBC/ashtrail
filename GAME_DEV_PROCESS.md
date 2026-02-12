@@ -145,6 +145,7 @@ Each work item lives under an epic and follows this template:
 4. **Kill bad ideas fast.** It's fine to go back to Phase 2 and pick a different concept if the prototype doesn't work.
 5. **Track decisions.** When we make a choice, we write it down with the reasoning.
 6. **Work from the backlog.** In Phases 4–5, all work is tracked as work items. No untracked work.
+7. **Log every playtest.** After each playtest, record observations and actions in `PLAYTEST_LOG.md` before opening the PR. Link to work items and commits.
 
 ---
 
