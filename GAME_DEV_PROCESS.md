@@ -147,6 +147,7 @@ Each work item lives under an epic and follows this template:
 6. **Work from the backlog.** In Phases 4–5, all work is tracked as work items. No untracked work.
 7. **Log every playtest.** After each playtest, record observations and actions in `PLAYTEST_LOG.md` before opening the PR. Link to work items and commits.
 8. **Update current status.** Update the Current Status section in this doc when completing a work item or transitioning between phases.
+9. **One work item per PR.** Keep work items small and self-contained enough that each one is independently testable and mergeable.
 
 ---
 
