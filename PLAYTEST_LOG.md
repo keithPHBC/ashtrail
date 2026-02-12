@@ -33,3 +33,19 @@ Record of playtest observations during development. Each entry is linked to the 
 ### Actions Taken
 - Fixed tile collision polygon to use center-relative coordinates — 710000a
 - Retested: player sits flush on all surfaces now
+
+---
+
+## PLAYER-2 — 2026-02-10
+
+**Build:** feature/player-attack @ ad429ee
+**Tested:** Melee attack with hitbox visual, cooldown, and direction flipping
+
+### Observations
+- Red hitbox flash is visible and correctly positioned in front of player
+- Hitbox flips when changing facing direction
+- Cooldown prevents spam — feels responsive
+- No enemies to test damage dealing yet (ENEMY-1 dependency)
+
+### Actions Taken
+- No changes needed — attack feels good as-is

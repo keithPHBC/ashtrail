@@ -69,18 +69,21 @@ Variable jump height added during playtest feedback — releasing jump early cut
 #### PLAYER-2: Player melee attack
 
 **Type:** Feature
-**Status:** To Do
+**Status:** Done
 **Priority:** Must Have
 
 **Description:**
 Add a melee attack action to the player. When attack is pressed, activate a hitbox in front of the player that can damage enemies. Attack damage reads from the Stats resource.
 
 **Acceptance Criteria:**
-- [ ] Pressing attack activates an Area2D hitbox in the player's facing direction
-- [ ] Hitbox is active for a brief window (~0.2-0.3s), then deactivates
-- [ ] Attack hitbox detects overlap with enemy collision
-- [ ] Damage value comes from `stats.attack_damage`
-- [ ] Player cannot spam attack (brief cooldown between swings)
+- [x] Pressing attack activates an Area2D hitbox in the player's facing direction
+- [x] Hitbox is active for a brief window (~0.2-0.3s), then deactivates
+- [x] Attack hitbox detects overlap with enemy collision
+- [x] Damage value comes from `stats.attack_damage`
+- [x] Player cannot spam attack (brief cooldown between swings)
+
+**Notes:**
+Added red rectangle flash as placeholder attack visual — shows hitbox position and timing during development.
 
 #### PLAYER-3: Player HP and damage
 
