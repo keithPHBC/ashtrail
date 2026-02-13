@@ -154,7 +154,7 @@ Each work item lives under an epic and follows this template:
 ## Current Status
 
 **Phase:** 4 — Core Mechanic Prototype
-**Status:** In progress — PLAYER-1 and LEVEL-1 complete, PLAYER-2 next
+**Status:** In progress — PLAYER-1, PLAYER-2, LEVEL-1 complete, ENEMY-1 next
 
 ### Phase History
 
